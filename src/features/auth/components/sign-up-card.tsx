@@ -1,3 +1,4 @@
+"use client";
 import { z } from "zod";
 
 import Link from "next/link";
@@ -39,7 +40,6 @@ export const SignUpCard = () => {
   });
 
   const onSubmit = (values: z.infer<typeof registerSchema>) => {
-    console.log("🚀 ~ onSubmit ~ values:", values);
     mutate({ json: values });
   };
 
@@ -112,7 +112,7 @@ export const SignUpCard = () => {
                 </FormItem>
               )}
             />
-            <Button disabled={false} className="w-full">
+            <Button disabled={isPending} className="w-full">
               Register
             </Button>
           </form>
@@ -126,7 +126,7 @@ export const SignUpCard = () => {
           variant="secondary"
           size="lg"
           className="w-full"
-          disabled={false}
+          disabled={isPending}
         >
           <FcGoogle className="mr-2 size-5" />
           Register with Google
@@ -135,7 +135,7 @@ export const SignUpCard = () => {
           variant="secondary"
           size="lg"
           className="w-full"
-          disabled={false}
+          disabled={isPending}
         >
           <FaGithub className="mr-2 size-5" />
           Register with Github

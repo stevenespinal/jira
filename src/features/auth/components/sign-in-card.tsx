@@ -1,3 +1,4 @@
+"use client";
 import { z } from "zod";
 import { FcGoogle } from "react-icons/fc";
 import { FaGithub } from "react-icons/fa";
@@ -31,7 +32,6 @@ export const SignInCard = () => {
   });
 
   const onSubmit = (values: z.infer<typeof loginSchema>) => {
-    console.log("🚀 ~ onSubmit ~ values:", values);
     mutate({ json: values });
   };
 
@@ -79,7 +79,7 @@ export const SignInCard = () => {
               )}
             />
 
-            <Button disabled={false} className="w-full">
+            <Button disabled={isPending} className="w-full">
               Login
             </Button>
           </form>
@@ -93,7 +93,7 @@ export const SignInCard = () => {
           variant="secondary"
           size="lg"
           className="w-full"
-          disabled={false}
+          disabled={isPending}
         >
           <FcGoogle className="mr-2 size-5" />
           Login with Google
@@ -102,7 +102,7 @@ export const SignInCard = () => {
           variant="secondary"
           size="lg"
           className="w-full"
-          disabled={false}
+          disabled={isPending}
         >
           <FaGithub className="mr-2 size-5" />
           Login with Github
