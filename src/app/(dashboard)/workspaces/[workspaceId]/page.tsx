@@ -1,10 +1,10 @@
-"use client";
+import { getCurrent } from "@/features/auth/actions";
+import { redirect } from "next/navigation";
 
-import { useWorkspaceId } from "@/features/workspaces/hooks/use-workspace-id";
-import { useParams } from "next/navigation";
-import React from "react";
+export default async function WorkspaceIdPage() {
+  const user = await getCurrent();
 
-export default function WorkspaceIdPage() {
-  const workspaceId = useWorkspaceId();
-  return <div>{workspaceId}</div>;
+  if (!user) redirect("/sign-in");
+
+  return <div>Hello</div>;
 }
